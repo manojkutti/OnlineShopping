@@ -16,7 +16,7 @@ namespace ShoppingSystem
         //MarketingStaff ms = new MarketingStaff();
         //List<Customer> customers = new List<Customer>();
         ShoppingCart sc = new ShoppingCart();
-        //List<Customer> login = new List<Customer>();
+        
         SalesStaff ss = new SalesStaff();
         public Customer()
         {

@@ -6,6 +6,7 @@ namespace ShoppingSystem
 {
     public class ShoppingCart
     {
+        
         //Customer c = new Customer();
         MarketingStaff ms = new MarketingStaff();
         public List<Product> cart = new List<Product>();
@@ -71,10 +72,10 @@ namespace ShoppingSystem
                 Console.WriteLine("No items in the cart to delete");
             }
         }
-        int totalcost = 0;
+        
         public int GetTotalCost()
         {
-            
+            int totalcost = 0;
             for (int i = 0; i < cart.Count; i++)
             {
                 totalcost += cart[i].GetCost();
