@@ -11,7 +11,7 @@ namespace ShoppingSystem
         public string Email;
         public int PhoneNumber;
         public string BillingAddress;
-
+        public bool po;
 
         //MarketingStaff ms = new MarketingStaff();
         //List<Customer> customers = new List<Customer>();
@@ -128,38 +128,56 @@ namespace ShoppingSystem
         {
             sc.DeleteCart();
         }
-
+        
         public bool PlaceOrder()
         {
+            //ShoppingCart shoppi = new ShoppingCart();
             //Customer require to login to System i.e by using Login();
             //create an account if he not yet have one i.e by using Register() method
-
-            Console.WriteLine("do u want to place order.....if yes enter yes... if not enter no");
-            string result = Console.ReadLine();
-            if (result == "yes")
+            int a1 = sc.cart.Count;
+            if (a1 != 0)
             {
-                ss.ProcessOrder();
-                return true;
+                Console.WriteLine("do u want to place order.....if yes enter yes... if not enter no");
+                string result = Console.ReadLine();
+                if (result == "yes")
+                {
+                    ss.ProcessOrder();
+                    po = true;
+                    return true;
+                }
+                else
+                {
+                    Console.WriteLine("Can't process order");
+                    return false;
+                }
+                
             }
             else
             {
-                Console.WriteLine("Can't process order");
+                Console.WriteLine("Can't place order due to no items in cart");
                 return false;
             }
         }
         public void Damage()
         {
-            Console.WriteLine("If there is damage in item ....enter yes..if not no");
-            string damage = Console.ReadLine();
-            if (damage == "yes")
+            if (po == true)
             {
-                ss.Refund();
+                Console.WriteLine("If there is damage in item ....enter yes..if not no");
+                string damage = Console.ReadLine();
+                if (damage == "yes")
+                {
+                    ss.Refund();
 
+                }
+                else
+                {
+                    Console.WriteLine("No damage ..so cant return money");
+
+                }
             }
             else
             {
-                Console.WriteLine("No damage ..so cant return money");
-
+                Console.WriteLine("First place order to return item");
             }
         }
 

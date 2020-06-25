@@ -8,7 +8,7 @@ namespace ShoppingSystem
     {
         //Customer c = new Customer();
         MarketingStaff ms = new MarketingStaff();
-        List<Product> cart = new List<Product>();
+        public List<Product> cart = new List<Product>();
 
         public void AddToCart()
         {
@@ -45,33 +45,41 @@ namespace ShoppingSystem
 
         public void DeleteCart()
         {
-            Console.WriteLine("Enter the product id to delete from cart");
-            int id = Convert.ToInt32(Console.ReadLine());
-            int count = 0;
-            for (int i = 0; i < cart.Count; i++)
+            if (cart.Count != 0)
             {
-                if (cart[i].GetId() == id)
+                Console.WriteLine("Enter the product id to delete from cart");
+                int id = Convert.ToInt32(Console.ReadLine());
+                int count = 0;
+                for (int i = 0; i < cart.Count; i++)
                 {
-                    Product p;
-                    p = cart[i];
-                    cart.Remove(p);
-                    count++;
-                    Console.WriteLine("Deleted successfully");
+                    if (cart[i].GetId() == id)
+                    {
+                        Product p;
+                        p = cart[i];
+                        cart.Remove(p);
+                        count++;
+                        Console.WriteLine("Deleted successfully");
+                    }
+                }
+                if (count == 0)
+                {
+                    Console.WriteLine("Can't delete");
                 }
             }
-            if (count == 0)
+            else
             {
-                Console.WriteLine("Can't delete");
+                Console.WriteLine("No items in the cart to delete");
             }
         }
-        public double GetTotalCost()
+        int totalcost = 0;
+        public int GetTotalCost()
         {
-            double totalcost = 0;
+            
             for (int i = 0; i < cart.Count; i++)
             {
                 totalcost += cart[i].GetCost();
             }
-            Console.WriteLine(totalcost);
+            //Console.WriteLine(totalcost);
             return totalcost;
         }
     }

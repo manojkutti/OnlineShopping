@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ShoppingSystem
 {
-    class Product
+    public class Product
     {
         public int ProductId;
         public string ProductName;

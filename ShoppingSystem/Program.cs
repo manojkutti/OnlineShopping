@@ -59,25 +59,31 @@ namespace ShoppingSystem
 
         public void ChangeInfo()
         {
-            Console.WriteLine("Enter the username and password to change info");
-            string name = Console.ReadLine();
-            string pass = Console.ReadLine();
-
-            foreach (Customer c in customers)
+            if (customers.Count != 0)
             {
-                if ((name == c.GetFullName()) && (pass == c.GetPassword()))
+                Console.WriteLine("Enter the username and password to change info");
+                string name = Console.ReadLine();
+                string pass = Console.ReadLine();
+
+                foreach (Customer c in customers)
                 {
-                    Console.WriteLine("Enter the details you want to update it");
-                    Console.WriteLine("Enter the phone number \n address to be updated");
-                    int phno = Convert.ToInt32(Console.ReadLine());
-                    string address = Console.ReadLine();
-                    c.SetPhoneNum(phno);
-                    c.SetAddress(address);
+                    if ((name == c.GetFullName()) && (pass == c.GetPassword()))
+                    {
+                        Console.WriteLine("Enter the details you want to update it");
+                        Console.WriteLine("Enter the phone number \n address to be updated");
+                        int phno = Convert.ToInt32(Console.ReadLine());
+                        string address = Console.ReadLine();
+                        c.SetPhoneNum(phno);
+                        c.SetAddress(address);
+
+                    }
 
                 }
-
             }
-
+            else
+            {
+                Console.WriteLine("No account registered to change info");
+            }
 
         }
 
@@ -97,13 +103,13 @@ namespace ShoppingSystem
             shopping.GetTotalCost();
 
             Program p1 = new Program();
-
+            CourierCompany courier = new CourierCompany();
             for (; ; )
             {
                 Console.WriteLine("Enter the choice:\n 1.Login \n 2.Register\n 3.Add to cart \n " +
                     "4.view cart \n 5.Place order \n 6.Change Info \n 7.return item \n 8.Deletecart \n 9.Check status \n 10.Exit");
                 int choice = Convert.ToInt32(Console.ReadLine());
-
+                bool e;
                 switch (choice)
                 {
 
@@ -119,11 +125,15 @@ namespace ShoppingSystem
                         {
                             c1.AddCart();
                         }
+                        else
+                        {
+                            Console.WriteLine("can't add to cart");
+                        }
                         break;
                     case 4:
                         c1.Display();
                         break;
-                    case 5:
+                    case 5: 
                         c1.PlaceOrder();
                         break;
                     case 6:
@@ -136,8 +146,15 @@ namespace ShoppingSystem
                         c1.DeleteItem();
                         break;
                     case 9:
-                        CourierCompany courier = new CourierCompany();
-                        courier.OrderDelivery();
+
+                        if (c1.po == true)
+                        {
+                            courier.OrderDelivery();
+                        }
+                        else
+                        {
+                            Console.WriteLine("First place the order");
+                        }
                         break;
                     default:
                         break;
